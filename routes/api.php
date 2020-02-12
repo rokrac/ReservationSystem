@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-
+Route::get('/pdf/{id}','PdfController@downloadPDF');
 Route::get('/places', 'PlaceController@show');
 Route::get('/places/{id}', 'PlaceController@showPlace');
 Route::get('/reservation', 'ReservationController@index');
