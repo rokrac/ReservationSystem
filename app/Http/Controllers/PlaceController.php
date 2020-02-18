@@ -6,11 +6,14 @@ use App\Jobs\SendEmailJob;
 use App\Place;
 use App\Reservation;
 use Illuminate\Http\Request;
-use PDF;
+
 
 class PlaceController extends Controller
 {
-    //
+    public function __construct(Place $place)
+    {
+        $this->place = $place;
+    }
 
     public function show()
     {
@@ -22,7 +25,7 @@ class PlaceController extends Controller
     {
         $task = Place::find($id);
         if ($task) {
-            return json_encode($task->setRelation('reservations', $task->reservations()->paginate(5)));
+            return json_encode($this->place->reservationsByPlace($task));
         }
         return "Place not found";
     }
