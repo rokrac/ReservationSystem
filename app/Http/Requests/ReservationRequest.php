@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Carbon\Carbon; 
 class ReservationRequest extends FormRequest
 {
     public $validator = null;
@@ -28,7 +28,7 @@ class ReservationRequest extends FormRequest
             'name' => 'required|string|max:18|min:1',
             'surname' => 'required|string|max:50|min:1',
             'email' => 'required|email|max:100|min:5',
-            'start_date' => 'required|after:now',
+            'start_date' => 'required|after:' . Carbon::now('Europe/Vilnius'),
             'time' => 'required|min:0|max:4',
             'place_id' => 'required',
         ];
