@@ -41,8 +41,10 @@ class ReservationController extends Controller
             return response()->json($request->validator->messages(), 422);
         }
 
-        if ($this->res->reservationRefused(DateHelper::startDate($request->start_date),
-                DateHelper::endDate($request->start_date, $request->time), $request->place_id) != 0) {
+        if ($this->res->reservationRefused(
+                DateHelper::startDate($request->start_date),
+                DateHelper::endDate($request->start_date, $request->time), 
+                $request->place_id) != 0) {
             return response()->json(['reservationRefused' => 'Reservation exists on this time'], 422);
         };
 
